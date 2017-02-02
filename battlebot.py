@@ -82,10 +82,6 @@ while True:
 	elif p.cross:		#If CROSS is pressed stop
 		robot.stop()
 		print "s"
-	else:
-		if flag:		#If LEFT or RIGHT key was last pressed start moving forward again 
-			robot.forward(s)	
-			flag=0
 	if p.l2:			#Increase the speed if L2 is pressed
 		print s
 		s+=2
