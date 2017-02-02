@@ -64,7 +64,6 @@ s=150	#Initialize
 
 flag=0
 while True:
-	set_speed(s)	#Update the speed
 	p.update()			#Read the ps3 values
 	if p.up:			#If UP is pressed move forward
 		robot.forward(s)
