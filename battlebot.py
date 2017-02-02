@@ -33,7 +33,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/gpl-3.0.txt>.
 # r2 to decrease speed
 ########################################################################
 from ps3 import *		#Import the PS3 library
-from gopigo import *	#Import the GoPiGo library
 import Robot
 
 # Set the trim offset for each motor (left and right).  This is a value that
@@ -65,30 +64,24 @@ s=150	#Initialize
 
 flag=0
 while True:
-	if run:
-		set_speed(s)	#Update the speed
+	set_speed(s)	#Update the speed
 	p.update()			#Read the ps3 values
 	if p.up:			#If UP is pressed move forward
-		if run:
-			robot.forward(s)
+		robot.forward(s)
 		print "f"
 	elif p.left:		#If LEFT is pressed turn left
-		if run:
-			robot.left(s)
-			flag=1
+		robot.left(s)
+		flag=1
 		print "l"
 	elif p.right:		#If RIGHT is pressed move right
-		if run:
-			robot.right(s)
-			flag=1
+		robot.right(s)
+		flag=1
 		print "r"
 	elif p.down:		#If DOWN is pressed go back
-		if run:
-			robot.backward(s)
+		robot.backward(s)
 		print "b"
 	elif p.cross:		#If CROSS is pressed stop
-		if run:
-			robot.stop()
+		robot.stop()
 		print "s"
 	else:
 		if flag:		#If LEFT or RIGHT key was last pressed start moving forward again 
