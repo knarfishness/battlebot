@@ -76,30 +76,30 @@ left.run(Adafruit_MotorHAT.RELEASE)
 right.run(Adafruit_MotorHAT.RELEASE)
 # Configure all motors to stop at program exit if desired.
 if stop_at_exit:
-    atexit.register(mh.stop)
+	atexit.register(mh.stop)
 
 flag=0
 while True:
 	p.update()			#Read the ps3 values
 	mh.left_speed(speed)
-    mh.right_speed(speed)
+	mh.right_speed(speed)
 
 	y1=(p.a_joystick_left_y+1)*90 # value will be 90 at neutral, 0 at full throttle and 179 at full down
 
 	if y1 > 90:
-        mh.left.run(Adafruit_MotorHAT.FORWARD)
+		mh.left.run(Adafruit_MotorHAT.FORWARD)
 	elif y1 < 90:
-        mh.left.run(Adafruit_MotorHAT.BACKWARD)
-    else
+		mh.left.run(Adafruit_MotorHAT.BACKWARD)
+	else
 		mh.left.run(Adafruit_MotorHAT.RELEASE)
 
 	y2=(p.a_joystick_right_y+1)*90 # value will be 90 at neutral, 0 at full throttle and 179 at full down
 
 	if y2 > 90:
-        mh.right.run(Adafruit_MotorHAT.FORWARD)
+		mh.right.run(Adafruit_MotorHAT.FORWARD)
 	elif y2 < 90:
-        mh.right.run(Adafruit_MotorHAT.BACKWARD)
-    else
+		mh.right.run(Adafruit_MotorHAT.BACKWARD)
+	else
 		mh.right.run(Adafruit_MotorHAT.RELEASE)
 
 
