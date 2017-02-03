@@ -34,6 +34,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/gpl-3.0.txt>.
 ########################################################################
 from ps3 import *		#Import the PS3 library
 import Robot
+import atexit
 from Adafruit_MotorHAT import Adafruit_MotorHAT
 
 
