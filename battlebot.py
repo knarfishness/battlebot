@@ -66,8 +66,8 @@ s=150	#Initialize
 
 # Initialize motor HAT and left, right motor.
 mh = Adafruit_MotorHAT(0x60)
-left_id = 1
-right_id = 2
+left_id = 2
+right_id = 1
 left = mh.getMotor(left_id)
 right = mh.getMotor(right_id)
 
