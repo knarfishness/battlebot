@@ -34,6 +34,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/gpl-3.0.txt>.
 ########################################################################
 from ps3 import *		#Import the PS3 library
 import Robot
+from Adafruit_MotorHAT import Adafruit_MotorHAT
+
 
 # Set the trim offset for each motor (left and right).  This is a value that
 # will offset the speed of movement of each motor in order to make them both
@@ -62,26 +64,45 @@ robot = Robot.Robot(left_trim=LEFT_TRIM, right_trim=RIGHT_TRIM)
 print "Done"
 s=150	#Initialize
 
+# Initialize motor HAT and left, right motor.
+mh = Adafruit_MotorHAT(addr)
+left_id = 1
+right_id = 2
+left = mh.getMotor(left_id)
+right = mh.getMotor(right_id)
+
+# Start with motors turned off.
+left.run(Adafruit_MotorHAT.RELEASE)
+right.run(Adafruit_MotorHAT.RELEASE)
+# Configure all motors to stop at program exit if desired.
+if stop_at_exit:
+    atexit.register(mh.stop)
+
 flag=0
 while True:
 	p.update()			#Read the ps3 values
-	if p.up:			#If UP is pressed move forward
-		robot.forward(s)
-		print "f"
-	elif p.left:		#If LEFT is pressed turn left
-		robot.left(s)
-		flag=1
-		print "l"
-	elif p.right:		#If RIGHT is pressed move right
-		robot.right(s)
-		flag=1
-		print "r"
-	elif p.down:		#If DOWN is pressed go back
-		robot.backward(s)
-		print "b"
-	elif p.cross:		#If CROSS is pressed stop
-		robot.stop()
-		print "s"
+	mh.left_speed(speed)
+    mh.right_speed(speed)
+	
+	y1=(p.a_joystick_left_y+1)*90 # value will be 90 at neutral, 0 at full throttle and 179 at full down
+
+	if y1 > 90:
+        mh.left.run(Adafruit_MotorHAT.FORWARD)
+	elif y1 < 90:
+        mh.left.run(Adafruit_MotorHAT.BACKWARD)
+    else
+		mh.left.run(Adafruit_MotorHAT.RELEASE)
+
+	y2=(p.a_joystick_right_y+1)*90 # value will be 90 at neutral, 0 at full throttle and 179 at full down
+
+	if y2 > 90:
+        mh.right.run(Adafruit_MotorHAT.FORWARD)
+	elif y2 < 90:
+        mh.right.run(Adafruit_MotorHAT.BACKWARD)
+    else
+		mh.right.run(Adafruit_MotorHAT.RELEASE)
+
+
 	if p.l2:			#Increase the speed if L2 is pressed
 		print s
 		s+=2
@@ -92,11 +113,6 @@ while True:
 		s-=2
 		if s<0:
 			s=0
-	y1=(p.a_joystick_left_y+1)*90
-	print int(y1)
-
-	y2=(p.a_joystick_right_y+1)*90
-	print int(y1)
 	# if run:
 	# 	servo(int(x))	#Turn servo a/c to left joy movement
 	time.sleep(.01)
