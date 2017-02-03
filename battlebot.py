@@ -65,7 +65,7 @@ print "Done"
 s=150	#Initialize
 
 # Initialize motor HAT and left, right motor.
-mh = Adafruit_MotorHAT(addr)
+mh = Adafruit_MotorHAT(0x60)
 left_id = 1
 right_id = 2
 left = mh.getMotor(left_id)
@@ -75,8 +75,7 @@ right = mh.getMotor(right_id)
 left.run(Adafruit_MotorHAT.RELEASE)
 right.run(Adafruit_MotorHAT.RELEASE)
 # Configure all motors to stop at program exit if desired.
-if stop_at_exit:
-	atexit.register(mh.stop)
+atexit.register(mh.stop)
 
 flag=0
 while True:
