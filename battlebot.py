@@ -99,12 +99,12 @@ while True:
 		left.run(Adafruit_MotorHAT.RELEASE)
 
 	if right_stick > 90:
-		rightSpeed = abs((right_stick-90)*2.8)
+		rightSpeed = abs(right_stick-90*2.8)
 		print(rightSpeed)
 		#right.setSpeed(rightSpeed)
 		#right.run(Adafruit_MotorHAT.FORWARD)
 	elif right_stick < 90:
-		rightSpeed = (left_stick-90)*2.8
+		rightSpeed = (right_stick-90)*2.8
 		print(rightSpeed)
 		#right.setSpeed(rightSpeed)
 		#right.run(Adafruit_MotorHAT.BACKWARD)
