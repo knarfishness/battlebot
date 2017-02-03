@@ -90,7 +90,7 @@ while True:
 		mh.left.run(Adafruit_MotorHAT.FORWARD)
 	elif y1 < 90:
 		mh.left.run(Adafruit_MotorHAT.BACKWARD)
-	else
+	else:
 		mh.left.run(Adafruit_MotorHAT.RELEASE)
 
 	y2=(p.a_joystick_right_y+1)*90 # value will be 90 at neutral, 0 at full throttle and 179 at full down
@@ -99,7 +99,7 @@ while True:
 		mh.right.run(Adafruit_MotorHAT.FORWARD)
 	elif y2 < 90:
 		mh.right.run(Adafruit_MotorHAT.BACKWARD)
-	else
+	else:
 		mh.right.run(Adafruit_MotorHAT.RELEASE)
 
 
