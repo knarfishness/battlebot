@@ -79,38 +79,31 @@ right.run(Adafruit_MotorHAT.RELEASE)
 flag=0
 while True:
 	p.update()			#Read the ps3 values
-	left.setSpeed(s)
-	right.setSpeed(s)
 
-	y1=(p.a_joystick_left_y+1)*90 # value will be 90 at neutral, 0 at full throttle and 179 at full down
+	# value will be 90 at neutral, 0 at full throttle and 179 at full down
+	left_stick = (p.a_joystick_left_y+1)*90 
+	right_stick = (p.a_joystick_right_y+1)*90
 
-	if y1 > 90:
+
+	if left_stick > 90:
 		left.run(Adafruit_MotorHAT.FORWARD)
-	elif y1 < 90:
+		leftSpeed = abs((left_stick-90)*2.8)
+		left.setSpeed(leftSpeed)
+	elif left_stick < 90:
 		left.run(Adafruit_MotorHAT.BACKWARD)
+		leftSpeed = (left_stick-90)*2.8
 	else:
 		left.run(Adafruit_MotorHAT.RELEASE)
 
-	y2=(p.a_joystick_right_y+1)*90 # value will be 90 at neutral, 0 at full throttle and 179 at full down
-
-	if y2 > 90:
+	if right_stick > 90:
 		right.run(Adafruit_MotorHAT.FORWARD)
-	elif y2 < 90:
+		rightSpeed = abs((right_stick-90)*2.8)
+		right.setSpeed(rightSpeed)
+	elif right_stick < 90:
 		right.run(Adafruit_MotorHAT.BACKWARD)
+		rightSpeed = (left_stick-90)*2.8
+		right.setSpeed(rightSpeed)
 	else:
 		right.run(Adafruit_MotorHAT.RELEASE)
 
-
-	if p.r1:			#Increase the speed if L2 is pressed
-		print s
-		s+=2
-		if s>255:
-			s=255
-	if p.l1:			#Decrease the speed if R2 is pressed
-		print s
-		s-=2
-		if s<0:
-			s=0
-	# if run:
-	# 	servo(int(x))	#Turn servo a/c to left joy movement
 	time.sleep(.01)
