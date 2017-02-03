@@ -83,7 +83,7 @@ while True:
 	p.update()			#Read the ps3 values
 	mh.left_speed(speed)
     mh.right_speed(speed)
-	
+
 	y1=(p.a_joystick_left_y+1)*90 # value will be 90 at neutral, 0 at full throttle and 179 at full down
 
 	if y1 > 90:
