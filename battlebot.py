@@ -11,8 +11,14 @@
 ########################################################################
 from ps3 import *		#Import the PS3 library
 from Adafruit_MotorHAT import Adafruit_MotorHAT
+import time
+
+
 
 print "Initializing BattleBot Sequence"
+
+# delays for 15 seconds, enough for the PS3 controller
+time.sleep(15) 
 
 #Create a PS3 controller object
 p=ps3()
