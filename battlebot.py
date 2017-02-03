@@ -101,12 +101,12 @@ while True:
 		right.run(Adafruit_MotorHAT.RELEASE)
 
 
-	if p.l2:			#Increase the speed if L2 is pressed
+	if p.r1:			#Increase the speed if L2 is pressed
 		print s
 		s+=2
 		if s>255:
 			s=255
-	if p.r2:			#Decrease the speed if R2 is pressed
+	if p.l1:			#Decrease the speed if R2 is pressed
 		print s
 		s-=2
 		if s<0:
