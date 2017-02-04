@@ -29,8 +29,8 @@ mh = Adafruit_MotorHAT(0x60)
 print "BattleBot Sequence Complete. BattleBot is GO!"
 
 # Reverse these values to switch motor sides
-left_id = 2
-right_id = 1
+left_id = 1
+right_id = 2
 left = mh.getMotor(left_id)
 right = mh.getMotor(right_id)
 
@@ -52,11 +52,11 @@ while True:
 	if left_stick > 90:
 		leftSpeed = abs((left_stick-90)*2.8)
 		left.setSpeed(int(leftSpeed))
-		left.run(Adafruit_MotorHAT.FORWARD)
+		left.run(Adafruit_MotorHAT.BACKWARD)
 	elif left_stick < 90:
 		leftSpeed = abs((left_stick-90)*2.8)
 		left.setSpeed(int(leftSpeed))
-		left.run(Adafruit_MotorHAT.BACKWARD)
+		left.run(Adafruit_MotorHAT.FORWARD)
 	else:
 		left.run(Adafruit_MotorHAT.RELEASE)
 
@@ -64,11 +64,11 @@ while True:
 	if right_stick > 90:
 		rightSpeed = abs((right_stick-90)*2.8)
 		right.setSpeed(int(rightSpeed))
-		right.run(Adafruit_MotorHAT.FORWARD)
+		right.run(Adafruit_MotorHAT.BACKWARD)
 	elif right_stick < 90:
 		rightSpeed = abs((right_stick-90)*2.8)
 		right.setSpeed(int(rightSpeed))
-		right.run(Adafruit_MotorHAT.BACKWARD)
+		right.run(Adafruit_MotorHAT.FORWARD)
 	else:
 		right.run(Adafruit_MotorHAT.RELEASE)
 
